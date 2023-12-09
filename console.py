@@ -34,7 +34,7 @@ def pars(arg):
 
 
 class HBNBCommand(cmd.Cmd):
-    """defines the hobetonbnb command interpreter interface"""
+    """defines the hobertonbnb command interpreter interface"""
     prompt = "(hbnb) "
     __clss = {
             "BaseModel",
@@ -72,18 +72,18 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, cmad):
-        """Quit command to exit the program"""
+        """Quit command to exit the program."""
         return True
 
     def do_EOF(self, cmad):
-        """a method that respond to the EOF command to exit the prog"""
+        """EOF signal to exit the program."""
         print("")
         return True
 
     def do_create(self, val):
-        """a method that handles the create command and creates a new
-        clas instance and prints its ID.
-        Usage: create <class>"""
+        """Usage: create <class>
+        Create a new class instance and print its id.
+        """
         cm = pars(val)
         if len(cm) == 0:
             print('** class name missing **')
@@ -94,9 +94,9 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, val):
-        """the method that handles the show command and displays the
-        string reprsentation of the class instance given the id
-        Usage: show <class> <id> or <class>.show(<id>)"""
+        """Usage: show <class> <id> or <class>.show(<id>)
+        Display the string representation of a class instance of a given id.
+        """
         cm = pars(val)
         insdict = storage.all()
         if len(cm) == 0:
@@ -111,9 +111,8 @@ class HBNBCommand(cmd.Cmd):
             print(insdict['{}.{}'.format(cm[0], cm[1])])
 
     def do_destroy(self, val):
-        """the method that handles the destroy command and deletes a
-        class instance given the id
-        Usage: destroy <class> <id> or <class>.destroy(<id>)"""
+        """Usage: destroy <class> <id> or <class>.destroy(<id>)
+        Delete a class instance of a given id."""
         cm = pars(val)
         insdict = storage.all()
         if len(cm) == 0:
@@ -130,9 +129,9 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_all(self, val):
-        """the method that handles the all command which displays all
-        the string representations of all instances given the class
-        Usage: all or all <class> or <class>.all()"""
+        """Usage: all or all <class> or <class>.all()
+        Display string representations of all instances of a given class.
+        If no class is specified, displays all instantiated objects."""
         cm = pars(val)
         if len(cm) > 0 and cm[0] not in HBNBCommand.__clss:
             print('** class doesn\'t exist **')
@@ -146,9 +145,8 @@ class HBNBCommand(cmd.Cmd):
             print(cm1)
 
     def do_count(self, val):
-        """the method that handles the count command and retrieves
-        the number of instances of the class given
-        Usage: count <class> or <class>.count()"""
+        """Usage: count <class> or <class>.count()
+        Retrieve the number of instances of a given class."""
         cm = pars(val)
         cnt = 0
         for ins in storage.all().values():
@@ -157,17 +155,16 @@ class HBNBCommand(cmd.Cmd):
         print(cnt)
 
     def do_update(self, val):
-        """the method that handles the update command and updates the
-        class instance of a given id by adding or updating a given
-        attr key/val pair
-        Usage: update <class> <id> <attribute_name> <attribute_value> or
-        <class>.update(<id>, <attribute_name>, <attribute_value>) or
-        <class>.update(<id>, <dictionary>)"""
+        """Usage: update <class> <id> <attribute_name> <attribute_value> or
+       <class>.update(<id>, <attribute_name>, <attribute_value>) or
+       <class>.update(<id>, <dictionary>)
+        Update a class instance of a given id by adding or updating
+        a given attribute key/value pair or dictionary."""
         cm = pars(val)
         insdict = storage.all()
 
         if len(cm) == 0:
-            print('** class name misssing **')
+            print('** class name missing **')
             return False
         if cm[0] not in HBNBCommand.__clss:
             print('** class doesn\'t exist **')
