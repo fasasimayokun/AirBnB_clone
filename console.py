@@ -127,7 +127,6 @@ class HBNBCommand(cmd.Cmd):
             del insdict["{}.{}".format(cm[0], cm[1])]
             storage.save()
 
-
     def do_all(self, val):
         """Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
